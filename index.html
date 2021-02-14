@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+    <title>Weather App Draft</title>
+    <script
+      src="https://kit.fontawesome.com/08ddf80cb5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <button id="current-location-button">Current Location</button>
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="card border-0">
+            <div class="card-body">
+              <div class="weather-details-top">
+                <h1 class="card-title">
+                  <i class="far fa-sun"></i>
+                  <span id="currentTemperature"> 2 </span>
+                </h1>
+                <div class="weather-details-units">
+                  <a href="#" class="weather-details-unit active" id="celsius">
+                    °C
+                  </a>
+                  <span class="weather-details-separator">|</span>
+                  <a href="#" class="weather-details-unit" id="fahrenheit">
+                    °F
+                  </a>
+                </div>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-secondary">
+                  <span id="description"> Light snow </span>
+                </li>
+                <li class="list-group-item">
+                  Feels like <span id="feels_like"> 2 </span> °C
+                </li>
+                <li class="list-group-item">
+                  Wind <span id="wind_speed">3.1 </span> m/s
+                </li>
+                <li class="list-group-item">
+                  Precipitation <span id="precipitation">-</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Location and time -->
+        <div class="col-sm-7">
+          <div class="card border-0">
+            <div class="card-body">
+              <h2 class="card-title">
+                <div class="row g-2 align-items-center">
+                  <div class="col-auto">
+                    <label for="location-form" class="col-form-label"
+                      >Leipzig</label
+                    >
+                  </div>
+                  <div class="col-6">
+                    <form id="location-form">
+                      <input
+                        type="text"
+                        id="location-input"
+                        class="form-control"
+                        placeholder="Your location"
+                      />
+                      <input
+                        type="submit"
+                        id="citysearch"
+                        class="search-button"
+                        value="🔍"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </h2>
+              <h3 class="card-subtitle mb-2 text-muted" id="day-time"></h3>
+              <h3 class="card-subtitle mb-2 text-muted" id="date"></h3>
+              <h3 class="card-subtitle mb-2 text-muted">8:13 AM 🌅 4:22 PM</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Forecast part  -->
+    <div class="container forecast">
+      <div class="card text-center bg-light text-dark border-success">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-2">
+            <h3>Tue</h3>
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="col-2">
+            <h3>Wed</h3>
+            <i class="fas fa-cloud-sun"></i>
+          </div>
+          <div class="col-2">
+            <h3>Thu</h3>
+            <i class="fas fa-snowflake"></i>
+          </div>
+          <div class="col-2">
+            <h3>Fri</h3>
+            <i class="fas fa-snowflake"></i>
+          </div>
+          <div class="col-2">
+            <h3>Sat</h3>
+            <i class="fas fa-cloud-sun"></i>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
