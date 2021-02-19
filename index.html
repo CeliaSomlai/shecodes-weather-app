@@ -19,83 +19,71 @@
   </head>
   <body>
     <div class="container">
-      <button id="current-location-button">Current Location</button>
-      <div class="row">
-        <div class="col-sm-5">
-          <div class="card border-0">
-            <div class="card-body">
-              <div class="weather-details-top">
-                <h1 class="card-title">
-                  <i class="far fa-sun"></i>
-                  <span id="currentTemperature"> 2 </span>
-                </h1>
-                <div class="weather-details-units">
-                  <a href="#" class="weather-details-unit active" id="celsius">
-                    °C
-                  </a>
-                  <span class="weather-details-separator">|</span>
-                  <a href="#" class="weather-details-unit" id="fahrenheit">
-                    °F
-                  </a>
+      <div class="weather-app">
+        <div class="row">
+          <!-- Location and time -->
+          <div class="col-7">
+            <h2 class="card-title">
+              <div class="row g-2 align-items-center">
+                <div class="col-auto">
+                  <label for="location-form" class="col-form-label"
+                    >Leipzig</label
+                  >
+                </div>
+                <div class="col-6">
+                  <form id="location-form">
+                    <input
+                      type="text"
+                      id="location-input"
+                      class="form-control"
+                      placeholder="Your location"
+                    />
+                    <input
+                      type="submit"
+                      id="citysearch"
+                      class="search-button"
+                      value="🔍"
+                    />
+                  </form>
+                  <button id="current-location-button">Current Location</button>
                 </div>
               </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item list-group-item-secondary">
-                  <span id="description"> Light snow </span>
-                </li>
-                <li class="list-group-item">
-                  Feels like <span id="feels_like"> 2 </span> °C
-                </li>
-                <li class="list-group-item">
-                  Wind <span id="wind_speed">3.1 </span> m/s
-                </li>
-                <li class="list-group-item">
-                  Precipitation <span id="precipitation">-</span>
-                </li>
-              </ul>
-            </div>
+            </h2>
+            <ul>
+              <li id="day-time"></li>
+              <li id="date"></li>
+              <li>8:13 AM 🌅 4:22 PM</li>
+            </ul>
           </div>
-        </div>
-        <!-- Location and time -->
-        <div class="col-sm-7">
-          <div class="card border-0">
-            <div class="card-body">
-              <h2 class="card-title">
-                <div class="row g-2 align-items-center">
-                  <div class="col-auto">
-                    <label for="location-form" class="col-form-label"
-                      >Leipzig</label
-                    >
-                  </div>
-                  <div class="col-6">
-                    <form id="location-form">
-                      <input
-                        type="text"
-                        id="location-input"
-                        class="form-control"
-                        placeholder="Your location"
-                      />
-                      <input
-                        type="submit"
-                        id="citysearch"
-                        class="search-button"
-                        value="🔍"
-                      />
-                    </form>
-                  </div>
-                </div>
-              </h2>
-              <h3 class="card-subtitle mb-2 text-muted" id="day-time"></h3>
-              <h3 class="card-subtitle mb-2 text-muted" id="date"></h3>
-              <h3 class="card-subtitle mb-2 text-muted">8:13 AM 🌅 4:22 PM</h3>
+          <div class="col-5">
+            <div class="weather-details-top">
+              <h1 class="card-title">
+                <i class="far fa-sun"></i>
+                <span id="currentTemperature"> 2 </span>
+              </h1>
+              <div class="weather-details-units">
+                <a href="#" class="weather-details-unit active" id="celsius">
+                  °C
+                </a>
+                <span class="weather-details-separator">|</span>
+                <a href="#" class="weather-details-unit" id="fahrenheit">
+                  °F
+                </a>
+              </div>
             </div>
+            <ul class="list-group list-group-flush">
+              <li>
+                <span id="description"> Light snow </span>
+              </li>
+              <li>Feels like <span id="feels_like"> 2 </span> °C</li>
+              <li>Wind <span id="wind_speed">3.1 </span> m/s</li>
+              <li>Precipitation <span id="precipitation">-</span>35</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Forecast part  -->
-    <div class="container forecast">
-      <div class="card text-center bg-light text-dark border-success">
+      <!-- Forecast part  -->
+      <div class="container forecast">
         <div class="row">
           <div class="col-1"></div>
           <div class="col-2">
@@ -121,7 +109,9 @@
           <div class="col-1"></div>
         </div>
       </div>
-      <a href="https://github.com/CeliaSomlai/shecodes-weather-app"
+      <a
+        href="https://github.com/CeliaSomlai/shecodes-weather-app"
+        target="_blank"
         >Open-source code</a
       >
       by Celia Somlai
