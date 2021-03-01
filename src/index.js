@@ -56,7 +56,7 @@ function capitalize(str) {
 let currentDateTime = new Date();
 // Current day and time
 var dayTime = {
-  weekday: "short",
+  weekday: "long",
   hour: "numeric",
   minute: "numeric",
 };
@@ -68,7 +68,7 @@ currentDayTimePH.innerHTML = currentDay;
 // Current date
 var date = {
   day: "numeric",
-  month: "numeric",
+  month: "long",
   year: "numeric",
 };
 let currentDate = Intl.DateTimeFormat("en-US", date).format(currentDateTime);
