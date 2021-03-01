@@ -23,34 +23,28 @@
         <div class="row">
           <!-- Location and time -->
           <div class="col-7">
-            <h2 class="card-title">
-              <div class="row g-2 align-items-center">
-                <div class="col-auto">
-                  <label for="location-form" class="col-form-label"
-                    >Leipzig</label
-                  >
-                </div>
-                <div class="col-6">
-                  <form id="location-form">
-                    <input
-                      type="text"
-                      id="location-input"
-                      class="form-control"
-                      placeholder="Your location"
-                    />
-                    <input
-                      type="submit"
-                      id="citysearch"
-                      class="search-button"
-                      value="🔍"
-                    />
-                  </form>
-                  <button id="current-location-button">Current Location</button>
-                </div>
-              </div>
-            </h2>
+            <div class="col-7">
+              <form id="location-form">
+                <input
+                  type="text"
+                  id="location-input"
+                  class="form-control"
+                  placeholder="Your location"
+                />
+                <input
+                  type="submit"
+                  id="citysearch"
+                  class="search-button"
+                  value="🔍"
+                />
+              </form>
+              <button id="current-location-button">Current Location</button>
+
+              <h2>Leipzig</h2>
+            </div>
+
             <ul>
-              <li id="day-time"></li>
+              <strong><li id="day-time"></li></strong>
               <li id="date"></li>
               <li>8:13 AM 🌅 4:22 PM</li>
             </ul>
@@ -81,32 +75,33 @@
             </ul>
           </div>
         </div>
-      </div>
-      <!-- Forecast part  -->
-      <div class="container forecast">
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-2">
-            <h3>Tue</h3>
-            <i class="fas fa-cloud"></i>
+
+        <!-- Forecast part  -->
+        <div class="container forecast">
+          <div class="row">
+            <div class="col-1"></div>
+            <div class="col-2">
+              <h3>Tue</h3>
+              <i class="fas fa-cloud"></i>
+            </div>
+            <div class="col-2">
+              <h3>Wed</h3>
+              <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="col-2">
+              <h3>Thu</h3>
+              <i class="fas fa-snowflake"></i>
+            </div>
+            <div class="col-2">
+              <h3>Fri</h3>
+              <i class="fas fa-snowflake"></i>
+            </div>
+            <div class="col-2">
+              <h3>Sat</h3>
+              <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="col-1"></div>
           </div>
-          <div class="col-2">
-            <h3>Wed</h3>
-            <i class="fas fa-cloud-sun"></i>
-          </div>
-          <div class="col-2">
-            <h3>Thu</h3>
-            <i class="fas fa-snowflake"></i>
-          </div>
-          <div class="col-2">
-            <h3>Fri</h3>
-            <i class="fas fa-snowflake"></i>
-          </div>
-          <div class="col-2">
-            <h3>Sat</h3>
-            <i class="fas fa-cloud-sun"></i>
-          </div>
-          <div class="col-1"></div>
         </div>
       </div>
       <a
