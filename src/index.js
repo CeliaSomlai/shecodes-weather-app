@@ -75,11 +75,20 @@ let currentDate = Intl.DateTimeFormat("en-US", date).format(currentDateTime);
 let currentDatePH = document.querySelector("#date");
 currentDatePH.innerHTML = currentDate;
 
+function formatTime(timestamp) {
+  var time = {
+    hour: "numeric",
+    minute: "numeric",
+  };
+
+  return Intl.DateTimeFormat("en-US", time).format(timestamp);
+}
+
 // API Weather Data
 function displayWeather(response) {
   console.log(response.data.name);
   console.log(response.data);
-  document.querySelector("label").innerHTML = response.data.name;
+  document.querySelector("#location").innerHTML = response.data.name;
   let temperature = Math.round(response.data.main.temp);
   console.log(temperature);
   document.querySelector("#currentTemperature").innerHTML = `${temperature}`;
@@ -90,6 +99,18 @@ function displayWeather(response) {
     response.data.main.feels_like
   );
   document.querySelector("#wind_speed").innerHTML = response.data.wind.speed;
+  document.querySelector("#sunrise").innerHTML = formatTime(
+    response.data.sys.sunrise * 1000
+  );
+  document.querySelector("#sunset").innerHTML = formatTime(
+    response.data.sys.sunset * 1000
+  );
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
 }
 
 function search(city) {
