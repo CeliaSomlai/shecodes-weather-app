@@ -20,87 +20,69 @@
   <body>
     <div class="container">
       <div class="weather-app">
+        <form id="location-form" class="row">
+          <div class="col-3">
+            <input
+              type="text"
+              id="location-input"
+              class="form-control"
+              placeholder="Your location"
+            />
+          </div>
+          <div class="col-1">
+            <input
+              type="submit"
+              id="citysearch"
+              class="search-button"
+              value="🔍"
+            />
+          </div>
+          <div class="col-1">
+            <button id="current-location-button">📍</button>
+          </div>
+        </form>
+
         <div class="row">
-          <!-- Location and time -->
-          <div class="col-7">
-            <div class="col-7">
-              <form id="location-form">
-                <input
-                  type="text"
-                  id="location-input"
-                  class="form-control"
-                  placeholder="Your location"
-                />
-                <input
-                  type="submit"
-                  id="citysearch"
-                  class="search-button"
-                  value="🔍"
-                />
-              </form>
-              <button id="current-location-button">Current Location</button>
-
-              <h2>Leipzig</h2>
+          <div class="col-5">
+            <div class="weather-details-top">
+              <div class="icon-temp">
+                <img src="" id="icon" class="icon" /><span
+                  id="currentTemperature"
+                  >2</span
+                ><span class="weather-details-units">
+                  <a href="#" class="weather-details-unit active" id="celsius"
+                    >°C</a
+                  >
+                  <span class="weather-details-separator"> | </span
+                  ><a href="#" class="weather-details-unit" id="fahrenheit"
+                    >°F</a
+                  >
+                </span>
+              </div>
             </div>
-
+          </div>
+          <div class="col-4">
+            <h2>
+              <span id="location"> Leipzig </span>
+            </h2>
             <ul>
               <strong><li id="day-time"></li></strong>
               <li id="date"></li>
-              <li>8:13 AM 🌅 4:22 PM</li>
+              <li>
+                <span id="sunrise">8:13 AM</span>🌅<span id="sunset"
+                  >4:22 PM</span
+                >
+              </li>
             </ul>
           </div>
-          <div class="col-5">
-            <div class="weather-details-top">
-              <h1 class="card-title">
-                <i class="far fa-sun"></i>
-                <span id="currentTemperature"> 2 </span>
-              </h1>
-              <div class="weather-details-units">
-                <a href="#" class="weather-details-unit active" id="celsius">
-                  °C
-                </a>
-                <span class="weather-details-separator">|</span>
-                <a href="#" class="weather-details-unit" id="fahrenheit">
-                  °F
-                </a>
-              </div>
-            </div>
-            <ul class="list-group list-group-flush">
+          <div class="col-3">
+            <ul class="current_weather_features">
               <li>
                 <span id="description"> Light snow </span>
               </li>
               <li>Feels like <span id="feels_like"> 2 </span> °C</li>
               <li>Wind <span id="wind_speed">3.1 </span> m/s</li>
-              <li>Precipitation <span id="precipitation">-</span>35</li>
             </ul>
-          </div>
-        </div>
-
-        <!-- Forecast part  -->
-        <div class="container forecast">
-          <div class="row">
-            <div class="col-1"></div>
-            <div class="col-2">
-              <h3>Tue</h3>
-              <i class="fas fa-cloud"></i>
-            </div>
-            <div class="col-2">
-              <h3>Wed</h3>
-              <i class="fas fa-cloud-sun"></i>
-            </div>
-            <div class="col-2">
-              <h3>Thu</h3>
-              <i class="fas fa-snowflake"></i>
-            </div>
-            <div class="col-2">
-              <h3>Fri</h3>
-              <i class="fas fa-snowflake"></i>
-            </div>
-            <div class="col-2">
-              <h3>Sat</h3>
-              <i class="fas fa-cloud-sun"></i>
-            </div>
-            <div class="col-1"></div>
           </div>
         </div>
       </div>
