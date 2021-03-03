@@ -1,58 +1,9 @@
-// let weather = {
-//   paris: {
-//     temp: 19.7,
-//     humidity: 80,
-//   },
-//   tokyo: {
-//     temp: 17.3,
-//     humidity: 50,
-//   },
-//   lisbon: {
-//     temp: 30.2,
-//     humidity: 20,
-//   },
-//   "san francisco": {
-//     temp: 20.9,
-//     humidity: 100,
-//   },
-//   moscow: {
-//     temp: -5,
-//     humidity: 20,
-//   },
-// };
-
-// // write your code here
-
 // Capitalize function
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// // Prompt location
-// let city = prompt("Enter your location");
-// city = city.trim().toLowerCase(); // trimming, using only lowercase
-// // Add Fahrenheit
-
-// console.log(weather);
-// if (weather[city] !== undefined) {
-//   let temperature = weather[city].temp;
-//   let tempC = Math.round(temperature);
-//   let tempF = Math.round(temperature * 1.8 + 32);
-//   let hum = weather[city].humidity;
-//   alert(
-//     `It is currently ${tempC}°C (${tempF}°F) in ${capitalize(
-//       city
-//     )} with a humidity of ${hum}%`
-//   );
-// } else {
-//   alert(
-//     `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
-//   );
-// }
-
-// week 4 homework
-
-// feature #1
+// creating time functions
 let currentDateTime = new Date();
 // Current day and time
 var dayTime = {
@@ -84,42 +35,76 @@ function formatTime(timestamp) {
   return Intl.DateTimeFormat("en-US", time).format(timestamp);
 }
 
+function day(timestamp) {
+  var time = {
+    weekday: "short",
+  };
+  return Intl.DateTimeFormat("en-US", time).format(timestamp);
+}
+
 // API Weather Data
 function displayWeather(response) {
   celsius.classList.add("active");
   fahrenheit.classList.remove("active");
-  console.log(response.data.name);
-  console.log(response.data);
-  document.querySelector("#location").innerHTML = response.data.name;
-  temperatureC = Math.round(response.data.main.temp);
-  console.log(temperatureC);
+  temperatureC = Math.round(response.data.current.temp);
   document.querySelector("#currentTemperature").innerHTML = `${temperatureC}`;
   document.querySelector("#description").innerHTML = capitalize(
-    response.data.weather[0].description
+    response.data.current.weather[0].description
   );
   document.querySelector("#feels_like").innerHTML = Math.round(
-    response.data.main.feels_like
+    response.data.current.feels_like
   );
-  document.querySelector("#wind_speed").innerHTML = response.data.wind.speed;
+  document.querySelector("#wind_speed").innerHTML =
+    response.data.current.wind_speed;
   document.querySelector("#sunrise").innerHTML = formatTime(
-    response.data.sys.sunrise * 1000
+    response.data.current.sunrise * 1000
   );
   document.querySelector("#sunset").innerHTML = formatTime(
-    response.data.sys.sunset * 1000
+    response.data.current.sunset * 1000
   );
   document
     .querySelector("#icon")
     .setAttribute(
       "src",
-      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+      `http://openweathermap.org/img/wn/${response.data.current.weather[0].icon}@2x.png`
     );
+
+  forecast = null;
+  document.querySelector("#forecast").innerHTML = null;
+
+  for (let index = 0; index < 6; index++) {
+    forecast = response.data.daily[index];
+    document.querySelector("#forecast").innerHTML += `
+  <div class="col-2">
+   <h3>
+    ${day(forecast.dt * 1000)}
+   </h3>
+            <img src="http://openweathermap.org/img/wn/${
+              forecast.weather[0].icon
+            }@2x.png" />
+            <div class="forecast-temperature"><strong id="forecastTempCMax">${Math.round(
+              forecast.temp.max
+            )}</strong>° <span class="forecastTempCMin">${Math.round(
+      forecast.temp.min
+    )}</span>°</div>
+          </div>`;
+  }
+}
+
+function searchCoord(response) {
+  document.querySelector("#location").innerHTML = response.data.name;
+  let lon2 = response.data.coord.lon;
+  let lat2 = response.data.coord.lat;
+  let apiKey = "87767cad8ef602f10eee9ef1685a5146";
+  let apiURLall = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat2}&lon=${lon2}&exclude={hourly}&appid=${apiKey}&units=metric`;
+  axios.get(apiURLall).then(displayWeather);
 }
 
 function search(city) {
   // API Weather Data
   let apiKey = "87767cad8ef602f10eee9ef1685a5146";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiURL).then(displayWeather);
+  axios.get(apiURL).then(searchCoord);
 }
 
 // feature #2
@@ -139,6 +124,32 @@ function convertToC(event) {
   fahrenheit.classList.remove("active");
   let temperature = document.querySelector("#currentTemperature");
   temperature.innerHTML = temperatureC;
+
+  let maxTempFC = document.querySelectorAll("#forecastTempCMax");
+  maxTempFC.forEach(convertToCFCMax);
+  console.log(maxTempFC);
+  let minTempFC = document.querySelectorAll(".forecastTempCMin");
+  minTempFC.forEach(convertToCFCMin);
+  console.log(minTempFC);
+
+  celsius.removeEventListener("click", convertToC);
+  fahrenheit.addEventListener("click", convertToF);
+}
+
+function convertToCFCMax(item) {
+  let currentTempHigh = item.innerHTML;
+  console.log(currentTempHigh);
+  let newTempHigh = `${Math.round(((currentTempHigh - 32) * 5) / 9)}`;
+  console.log(newTempHigh);
+  item.innerHTML = newTempHigh;
+}
+
+function convertToCFCMin(item) {
+  let currentTempLow = item.innerHTML;
+  console.log(currentTempLow);
+  let newTempLow = `${Math.round(((currentTempLow - 32) * 5) / 9)}`;
+  item.innerHTML = newTempLow;
+  console.log(newTempLow);
 }
 
 let unitC = document.querySelector("#celsius");
@@ -150,17 +161,45 @@ function convertToF(event) {
   fahrenheit.classList.add("active");
   let temperature = document.querySelector("#currentTemperature");
   temperature.innerHTML = Math.round((temperatureC * 9) / 5 + 32);
+
+  let maxTempFC = document.querySelectorAll("#forecastTempCMax");
+  maxTempFC.forEach(convertToFFCMax);
+  console.log(maxTempFC);
+  let minTempFC = document.querySelectorAll(".forecastTempCMin");
+  minTempFC.forEach(convertToFFCMin);
+  console.log(minTempFC);
+  celsius.addEventListener("click", convertToC);
+  fahrenheit.removeEventListener("click", convertToF);
+}
+
+function convertToFFCMax(item) {
+  let currentTempHigh = item.innerHTML;
+  console.log(currentTempHigh);
+  let newTempHigh = `${Math.round((currentTempHigh * 9) / 5 + 32)}`;
+  console.log(newTempHigh);
+  item.innerHTML = newTempHigh;
+}
+
+function convertToFFCMin(item) {
+  let currentTempLow = item.innerHTML;
+  console.log(currentTempLow);
+  let newTempLow = `${Math.round((currentTempLow * 9) / 5 + 32)}`;
+  item.innerHTML = newTempLow;
+  console.log(newTempLow);
 }
 
 let temperatureC = null;
+
 let unitF = document.querySelector("#fahrenheit");
 unitF.addEventListener("click", convertToF);
 
 function logLocation(position) {
   navigator.geolocation.getCurrentPosition(logLocation);
+
   // API Weather Data
   let apiKey = "87767cad8ef602f10eee9ef1685a5146";
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  let apiURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&exclude={hourly}&appid=${apiKey}&units=metric`;
+  document.querySelector("#location").innerHTML = `Your location`;
   axios.get(apiURL).then(displayWeather);
 }
 

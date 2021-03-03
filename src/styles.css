@@ -12,6 +12,7 @@ button {
 
 .container {
   max-width: 600px;
+  min-width: 500px;
   margin: 0 auto;
 }
 
@@ -21,8 +22,10 @@ button {
   padding: 0;
 }
 .weather-app {
-  margin: 30px auto;
+  margin: 0 auto;
+  margin-top: 30px;
   padding: 20px;
+  padding-bottom: 0;
   border: 1px solid #dadde1;
   border-radius: 10px;
 }
@@ -40,7 +43,12 @@ h1 {
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 16px;
+  padding-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  height: 17px;
+  line-height: 17px;
 }
 
 li {
@@ -57,11 +65,6 @@ li {
 ul {
   margin: 0;
   padding: 0;
-}
-
-i.fas {
-  color: #272044;
-  font-size: 42px;
 }
 
 .list-group-item {
@@ -115,4 +118,19 @@ a {
 }
 .current_weather_features {
   margin-top: 34px;
+}
+
+.forecast img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  height: 50%;
+}
+
+.forecast-temperature {
+  text-align: center;
+  font-size: 13px;
+  height: auto;
+  line-height: 15px;
+  white-space: nowrap;
 }
