@@ -86,6 +86,8 @@ function formatTime(timestamp) {
 
 // API Weather Data
 function displayWeather(response) {
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
   console.log(response.data.name);
   console.log(response.data);
   document.querySelector("#location").innerHTML = response.data.name;
