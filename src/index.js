@@ -89,9 +89,9 @@ function displayWeather(response) {
   console.log(response.data.name);
   console.log(response.data);
   document.querySelector("#location").innerHTML = response.data.name;
-  let temperature = Math.round(response.data.main.temp);
-  console.log(temperature);
-  document.querySelector("#currentTemperature").innerHTML = `${temperature}`;
+  temperatureC = Math.round(response.data.main.temp);
+  console.log(temperatureC);
+  document.querySelector("#currentTemperature").innerHTML = `${temperatureC}`;
   document.querySelector("#description").innerHTML = capitalize(
     response.data.weather[0].description
   );
@@ -130,25 +130,29 @@ function handleSubmit(event) {
 let form = document.querySelector("#location-form");
 form.addEventListener("submit", handleSubmit);
 
-// // feature #3
-// function convertToC(event) {
-//   event.preventDefault();
-//   let temperature = document.querySelector("#currentTemperature");
-//   temperature.innerHTML = 4;
-// }
+// feature #3
+function convertToC(event) {
+  event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  let temperature = document.querySelector("#currentTemperature");
+  temperature.innerHTML = temperatureC;
+}
 
-// let unitC = document.querySelector("#celsius");
-// unitC.addEventListener("click", convertToC);
+let unitC = document.querySelector("#celsius");
+unitC.addEventListener("click", convertToC);
 
-// function convertToF(event) {
-//   event.preventDefault();
-//   let temperature = document.querySelector("#currentTemperature");
-//   let temperatureC = temperature.innerHTML;
-//   temperature.innerHTML = Math.round(((temperatureC * 9) / 5) * 32);
-// }
+function convertToF(event) {
+  event.preventDefault();
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let temperature = document.querySelector("#currentTemperature");
+  temperature.innerHTML = Math.round((temperatureC * 9) / 5 + 32);
+}
 
-// let unitF = document.querySelector("#fahrenheit");
-// unitF.addEventListener("click", convertToF);
+let temperatureC = null;
+let unitF = document.querySelector("#fahrenheit");
+unitF.addEventListener("click", convertToF);
 
 function logLocation(position) {
   navigator.geolocation.getCurrentPosition(logLocation);

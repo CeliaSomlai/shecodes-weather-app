@@ -80,16 +80,20 @@ i.fas {
   top: -36px;
 }
 
-.weather-details-units .active {
-  color: #b12a5b;
+.icon-temp .active {
+  color: black;
+  font-weight: bold;
+  cursor: none;
 }
+
+.icon-temp .active:hover {
+  text-decoration: none;
+}
+
 a {
   cursor: pointer;
   background: 0 0;
-}
-
-.weather-details-separator {
-  color: #d7d7d7;
+  text-decoration: none;
 }
 
 .weather-details-unit {
